@@ -9,9 +9,9 @@ Plugin URI: http://cesaraquino.com.pe
 */
 
 // Define tus variables globales para tus rutas
-define('C7HISTORY_ROOTDIR', plugin_dir_path(__FILE__));
-define('C7HISTORY_URLPLUGIN', plugin_dir_url( __FILE__ ));
+define('C7HD_ROOTDIR', plugin_dir_path(__FILE__));
+define('C7HD_URLPLUGIN', plugin_dir_url( __FILE__ ));
 
 // Llamando al archivo del panel de configuración
-require_once(C7HISTORY_ROOTDIR . 'history-setting.php');
+require_once(C7HD_ROOTDIR . 'history-setting.php');
 ?>
