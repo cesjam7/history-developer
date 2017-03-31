@@ -7,10 +7,21 @@ function c7hd_customer_options() {
     add_options_page('History Developer', 'History Developer', 'manage_options', 'c7hd-setting', 'c7hd_settings_page' );
 }
 
+
+
+
 // Guardando los datos en la tabla options
 add_action( 'admin_init', 'c7hd_customer_register_settings' );
 function c7hd_customer_register_settings() {
-    register_setting( 'c7hd_register_options', 'c7hd-note' );
+    // Obtener el orden de la nota a guardar
+    $number_notes = get_option('c7hd_note');
+    if(empty($number_notes)) $number_notes = 0;
+
+    // Guardar el nuevo numero de orden
+    register_setting( 'c7hd_register_options', 'c7hd_note' );
+
+    // Guardar la nota
+    register_setting( 'c7hd_register_options', 'c7hd_note_'.$number_notes );
 }
 
 function c7hd_settings_page() { ?>
@@ -22,15 +33,22 @@ function c7hd_settings_page() { ?>
 
             <?php // Funciones necesarias para almacenar la información
             settings_fields('c7hd_register_options');
-            do_settings_sections('c7hd_register_options'); ?>
+            do_settings_sections('c7hd_register_options');
+
+            // Obtener el numero de orden para la nota
+            $number_notes = get_option('c7hd_note');
+            if(empty($number_notes)) $number_notes = 0; ?>
+
+            <input type="hidden" name="c7hd_note" value="<?php echo ($number_notes + 1); ?>">
 
             <div class="c7hd-form-group">
                 <label for="c7hd" class="c7hd-label">Input your note:</label>
-                <textarea name="c7hd-note[note]" class="c7hd-input" rows="6"></textarea>
+                <textarea name="c7hd_note_<?php echo $number_notes; ?>[note]" class="c7hd-input" rows="6"></textarea>
             </div>
-            <input type="hidden" name="c7hd-note[date]" value="<?php echo date('d-m-Y H:i'); ?>">
+            <input type="hidden" name="c7hd_note_<?php echo $number_notes; ?>[date]" value="<?php echo date('d-m-Y H:i'); ?>">
 
             <?php submit_button(); ?>
+
         </form>
 
         <?php $notes = get_option('c7hd-note');
