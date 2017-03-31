@@ -4,7 +4,13 @@ add_action('admin_menu', 'c7hd_customer_options');
 function c7hd_customer_options() {
 
     //create new top-level menu
-    add_options_page('History Developer', 'History Developer', 'manage_options', 'c7hd-setting.php', 'c7hd_settings_page' );
+    add_options_page('History Developer', 'History Developer', 'manage_options', 'c7hd-setting', 'c7hd_settings_page' );
+}
+
+// Guardando los datos en la tabla options
+add_action( 'admin_init', 'c7hd_customer_register_settings' );
+function c7hd_customer_register_settings() {
+    register_setting( 'c7hd_register_options', 'c7hd-note' );
 }
 
 function c7hd_settings_page() { ?>
@@ -14,16 +20,21 @@ function c7hd_settings_page() { ?>
 
         <form method="post" action="options.php">
 
+            <?php // Funciones necesarias para almacenar la información
+            settings_fields('c7hd_register_options');
+            do_settings_sections('c7hd_register_options'); ?>
+
             <div class="c7hd-form-group">
                 <label for="c7hd" class="c7hd-label">Input your note:</label>
-                <textarea name="nota" class="c7hd-input" rows="6"></textarea>
+                <textarea name="c7hd-note[note]" class="c7hd-input" rows="6"></textarea>
             </div>
+            <input type="hidden" name="c7hd-note[date]" value="<?php echo date('d-m-Y H:i'); ?>">
 
-            <p class="submit">
-                <input type="submit" name="submit" id="submit" class="button button-primary" value="Guardar notas">
-            </p>
-
+            <?php submit_button(); ?>
         </form>
+
+        <?php $notes = get_option('c7hd-note');
+        print_r($notes); ?>
 
         <h2>Past Notes</h2>
         <div class="c7hd-note">
