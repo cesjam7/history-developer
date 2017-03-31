@@ -51,22 +51,24 @@ function c7hd_settings_page() { ?>
 
         </form>
 
-        <?php $notes = get_option('c7hd-note');
-        print_r($notes); ?>
+        <?php if ($number_notes > 0) { ?>
 
-        <h2>Past Notes</h2>
-        <div class="c7hd-note">
-            <p><strong>07-05-2016 18:02</strong></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div class="c7hd-note">
-            <p><strong>07-05-2016 18:02</strong></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div class="c7hd-note">
-            <p><strong>07-05-2016 18:02</strong></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
+            <h2>Past Notes</h2>
+
+            <?php for ($i = $number_notes - 1; $i >= 0; $i = $i - 1) {
+
+                $note = get_option('c7hd_note_'.$i); ?>
+
+                <div class="c7hd-note">
+                    <p><strong><?php echo $note['date']; ?></strong></p>
+                    <p><?php echo $note['note']; ?></p>
+                </div>
+
+                <?php
+            }
+
+        } ?>
+
     </div>
     <?php
 }
