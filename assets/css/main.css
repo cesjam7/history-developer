@@ -1,0 +1,17 @@
+.c7hd-form-group {
+    padding: 10px 0 15px;
+}
+.c7hd-label {
+    display: block;
+    margin: 0 0 7px 2px;
+}
+.c7hd-input {
+    padding: 7px;
+    width: 100%;
+}
+.c7hd-note {
+    border: 1px solid #b9b9b9;
+    padding: 5px 15px;
+    background: #fff;
+    margin-bottom: 20px;
+}
