@@ -7,9 +7,6 @@ function c7hd_customer_options() {
     add_options_page('History Developer', 'History Developer', 'manage_options', 'c7hd-setting', 'c7hd_settings_page' );
 }
 
-
-
-
 // Guardando los datos en la tabla options
 add_action( 'admin_init', 'c7hd_customer_register_settings' );
 function c7hd_customer_register_settings() {
