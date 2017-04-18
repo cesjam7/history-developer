@@ -1,11 +1,12 @@
 <?php
 /*
 Plugin Name: C7 History Developer
-Plugin URI: http://cesaraquino.com.pe
+Plugin URI: http://cesaraquino.com.pe/plugins/c7-history-developer
 Description: Have a history of what you are building in the project.
-Version: 0.1
+Version: 1.0
 Author: César Aquino Maximiliano
 Plugin URI: http://cesaraquino.com.pe
+Text Domain: c7-history-developer
 */
 
 // Define tus variables globales para tus rutas
